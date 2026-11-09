@@ -206,7 +206,7 @@ export default function InternalTransferPage() {
     setAmount("");
     setMemo("");
     setError("");
-    setTransactionId(data ?? "");
+    setTransactionId("");
     setState("form");
   }
 

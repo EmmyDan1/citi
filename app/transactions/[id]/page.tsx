@@ -1,3 +1,4 @@
+
 import { ArrowLeft, CheckCircle2, Clock3, Landmark } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -22,6 +23,7 @@ type Account = {
   type: string;
 };
 
+export const instant = false;
 function formatCurrency(amount: number, type: string) {
   const formatted = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -65,6 +67,7 @@ export default async function TransactionDetailPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
+    
   const { id } = await params;
 
   const supabase = await createClient();

@@ -195,7 +195,7 @@ export default function InternalTransferPage() {
       return;
     }
 
-    setTransactionId(data);
+    setTransactionId(data ?? "");
     setState("success");
     setProcessing(false);
   }
@@ -206,7 +206,7 @@ export default function InternalTransferPage() {
     setAmount("");
     setMemo("");
     setError("");
-    setTransactionId("");
+    setTransactionId(data ?? "");
     setState("form");
   }
 

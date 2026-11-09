@@ -477,7 +477,7 @@ export default function InternalTransferPage() {
                 <Select
                   value={fromAccountId}
                   onValueChange={(value) => {
-                    setFromAccountId(value);
+                    setFromAccountId(value ?? "");
 
                     if (value === toAccountId) {
                       setToAccountId("");
@@ -570,7 +570,7 @@ export default function InternalTransferPage() {
                 <Select
                   value={toAccountId}
                   onValueChange={(value) => {
-                    setToAccountId(value);
+                    setToAccountId(value ?? "");
                     setError("");
                   }}
                 >

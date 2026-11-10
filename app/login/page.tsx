@@ -9,11 +9,11 @@ import {
   EyeOff,
   LockKeyhole,
   ShieldCheck,
+  Sparkles,
 } from "lucide-react";
 
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
@@ -23,7 +23,6 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -50,196 +49,207 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#061a32] text-slate-950">
-      <div className="flex min-h-screen flex-col lg:flex-row">
-        {/* Blue brand panel */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-[#032d58] via-[#07569a] to-[#0876c9] px-6 py-8 text-white lg:flex lg:w-[48%] lg:flex-col lg:justify-between lg:px-12 lg:py-10 xl:px-16">
-          {/* Decorative shapes */}
-          <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
-          <div className="absolute -bottom-32 -left-20 h-80 w-80 rounded-full bg-blue-300/10 blur-3xl" />
+    <main className="min-h-screen bg-[#f4f7fb] text-slate-950">
+      <div className="min-h-screen lg:flex">
+        {/* Blue header / brand area */}
+        <section className="relative overflow-hidden bg-gradient-to-br from-[#032b55] via-[#075da8] to-[#0879cc] px-5 pb-20 pt-7 text-white sm:px-8 lg:flex lg:min-h-screen lg:w-[46%] lg:flex-col lg:justify-between lg:px-12 lg:pb-12 lg:pt-10 xl:px-16">
+          {/* Decorative glow */}
+          <div className="absolute -right-24 -top-28 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+          <div className="absolute -bottom-32 -left-28 h-80 w-80 rounded-full bg-cyan-300/10 blur-3xl" />
 
-          <div className="relative z-10">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/12 ring-1 ring-white/20 backdrop-blur">
+          {/* Brand */}
+          <div className="relative z-10 flex items-center justify-between">
+            <Link
+              href="/"
+              className="flex items-center gap-3"
+              aria-label="Northstar home"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[#075da8] shadow-lg shadow-black/10">
                 <span className="text-lg font-bold">N</span>
               </div>
 
               <span className="text-xl font-semibold tracking-tight">
                 Northstar
               </span>
+            </Link>
+
+            <div className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[11px] font-medium text-blue-50 backdrop-blur">
+              <ShieldCheck className="h-3.5 w-3.5" />
+              Secure
             </div>
           </div>
 
-          <div className="relative z-10 hidden max-w-md lg:block">
-            <p className="mb-4 text-sm font-medium uppercase tracking-[0.18em] text-blue-100">
-              Your financial dashboard
+          {/* Desktop message */}
+          <div className="relative z-10 mt-16 hidden max-w-md lg:block">
+            <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/15">
+              <Sparkles className="h-5 w-5 text-blue-100" />
+            </div>
+
+            <p className="text-sm font-medium uppercase tracking-[0.18em] text-blue-100">
+              Welcome back
             </p>
 
-            <h1 className="text-4xl font-semibold leading-tight tracking-tight xl:text-5xl">
-              Everything you need,
+            <h1 className="mt-4 text-4xl font-semibold leading-tight tracking-tight xl:text-5xl">
+              Your finances,
               <br />
-              right where you need it.
+              all in one place.
             </h1>
 
             <p className="mt-6 max-w-sm text-base leading-7 text-blue-100">
-              Manage your accounts, review activity, and move money with a
-              clear view of your finances.
+              Sign in to manage your accounts, review transactions, and stay
+              connected to your financial activity.
             </p>
-
-            <div className="mt-10 flex items-center gap-3 text-sm text-blue-100">
-              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10">
-                <ShieldCheck className="h-4 w-4" />
-              </div>
-              Secure account access
-            </div>
           </div>
 
-          <div className="relative z-10 hidden text-xs text-blue-100/70 lg:block">
-            Secure access to your accounts
+          <div className="relative z-10 mt-10 hidden text-xs text-blue-100/70 lg:block">
+            Secure account access
+          </div>
+
+          {/* Mobile heading */}
+          <div className="relative z-10 mt-10 max-w-sm lg:hidden">
+            <p className="text-sm font-medium text-blue-100">
+              Welcome back
+            </p>
+
+            <h1 className="mt-2 text-3xl font-semibold tracking-tight">
+              Sign in to your account
+            </h1>
+
+            <p className="mt-3 max-w-xs text-sm leading-6 text-blue-100">
+              Access your accounts and manage your financial activity.
+            </p>
           </div>
         </section>
 
-        {/* Login area */}
-        <section className="flex flex-1 items-center justify-center bg-slate-50 px-4 py-10 sm:px-6 lg:px-10">
-          <div className="w-full max-w-md">
-            {/* Mobile brand */}
-            <div className="mb-8 flex items-center justify-center gap-3 lg:hidden">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#075da8] text-white shadow-sm">
-                <span className="text-lg font-bold">N</span>
+        {/* Form */}
+        <section className="-mt-10 relative z-20 px-4 pb-8 sm:px-6 lg:mt-0 lg:flex lg:flex-1 lg:items-center lg:justify-center lg:px-10 lg:pb-0">
+          <div className="mx-auto w-full max-w-md">
+            <div className="rounded-[26px] border border-slate-200/80 bg-white p-5 shadow-[0_24px_70px_-30px_rgba(6,26,50,0.35)] sm:p-7 lg:rounded-3xl lg:p-8">
+              {/* Form header */}
+              <div className="mb-7">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#eaf4ff] text-[#075da8]">
+                  <LockKeyhole className="h-5 w-5" />
+                </div>
+
+                <h2 className="mt-5 text-2xl font-semibold tracking-tight text-[#061a32]">
+                  Sign in
+                </h2>
+
+                <p className="mt-1.5 text-sm leading-6 text-slate-500">
+                  Enter your details to continue.
+                </p>
               </div>
 
-              <span className="text-xl font-semibold tracking-tight text-[#06284a]">
-                Northstar
-              </span>
-            </div>
+              <form onSubmit={handleLogin} className="space-y-5">
+                <div>
+                  <Label
+                    htmlFor="email"
+                    className="text-sm font-medium text-slate-700"
+                  >
+                    Email address
+                  </Label>
 
-            <div className="mb-7">
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-[#075da8]">
-                <LockKeyhole className="h-5 w-5" />
-              </div>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                    autoComplete="email"
+                    autoCapitalize="none"
+                    autoCorrect="off"
+                    spellCheck={false}
+                    inputMode="email"
+                    placeholder="you@example.com"
+                    required
+                    className="mt-2 h-13 rounded-xl border-slate-200 bg-slate-50/70 px-4 text-[16px] shadow-none transition placeholder:text-slate-400 focus-visible:border-[#0876c9] focus-visible:bg-white focus-visible:ring-4 focus-visible:ring-[#0876c9]/10"
+                  />
+                </div>
 
-              <h2 className="text-3xl font-semibold tracking-tight text-[#061a32]">
-                Welcome back
-              </h2>
-
-              <p className="mt-2 text-sm leading-6 text-slate-500">
-                Sign in to securely access your accounts and activity.
-              </p>
-            </div>
-
-            <Card className="rounded-2xl border-slate-200 bg-white shadow-[0_18px_50px_-24px_rgba(6,26,50,0.35)]">
-              <CardContent className="p-6 sm:p-7">
-                <form onSubmit={handleLogin} className="space-y-5">
-                  <div>
+                <div>
+                  <div className="flex items-center justify-between">
                     <Label
-                      htmlFor="email"
+                      htmlFor="password"
                       className="text-sm font-medium text-slate-700"
                     >
-                      Email address
+                      Password
                     </Label>
+                  </div>
 
+                  <div className="relative mt-2">
                     <Input
-                      id="email"
-                      type="email"
-                      value={email}
-                      onChange={(event) => setEmail(event.target.value)}
-                      className="mt-2 h-12 rounded-xl border-slate-200 bg-white px-4 text-base shadow-none transition focus-visible:border-[#0876c9] focus-visible:ring-[#0876c9]/20"
-                      autoComplete="email"
-                      autoCapitalize="none"
-                      autoCorrect="off"
-                      spellCheck={false}
-                      inputMode="email"
-                      placeholder="you@example.com"
+                      id="password"
+                      type={showPassword ? "text" : "password"}
+                      value={password}
+                      onChange={(event) =>
+                        setPassword(event.target.value)
+                      }
+                      autoComplete="current-password"
                       required
+                      className="h-13 rounded-xl border-slate-200 bg-slate-50/70 px-4 pr-12 text-[16px] shadow-none transition placeholder:text-slate-400 focus-visible:border-[#0876c9] focus-visible:bg-white focus-visible:ring-4 focus-visible:ring-[#0876c9]/10"
                     />
-                  </div>
 
-                  <div>
-                    <div className="flex items-center justify-between">
-                      <Label
-                        htmlFor="password"
-                        className="text-sm font-medium text-slate-700"
-                      >
-                        Password
-                      </Label>
-                    </div>
-
-                    <div className="relative mt-2">
-                      <Input
-                        id="password"
-                        type={showPassword ? "text" : "password"}
-                        value={password}
-                        onChange={(event) =>
-                          setPassword(event.target.value)
-                        }
-                        className="h-12 rounded-xl border-slate-200 bg-white px-4 pr-12 text-base shadow-none transition focus-visible:border-[#0876c9] focus-visible:ring-[#0876c9]/20"
-                        autoComplete="current-password"
-                        required
-                      />
-
-                      <button
-                        type="button"
-                        onClick={() => setShowPassword((value) => !value)}
-                        className="absolute right-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-lg text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
-                        aria-label={
-                          showPassword
-                            ? "Hide password"
-                            : "Show password"
-                        }
-                      >
-                        {showPassword ? (
-                          <EyeOff className="h-4 w-4" />
-                        ) : (
-                          <Eye className="h-4 w-4" />
-                        )}
-                      </button>
-                    </div>
-                  </div>
-
-                  {message && (
-                    <div
-                      role="alert"
-                      className="rounded-xl border border-red-200 bg-red-50 px-4 py-3"
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword((value) => !value)}
+                      className="absolute right-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-lg text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+                      aria-label={
+                        showPassword ? "Hide password" : "Show password"
+                      }
                     >
-                      <p className="text-sm leading-5 text-red-700">
-                        {message}
-                      </p>
-                    </div>
-                  )}
-
-                  <Button
-                    type="submit"
-                    disabled={loading}
-                    className="h-12 w-full rounded-xl bg-[#075da8] text-sm font-semibold text-white shadow-sm transition hover:bg-[#064f91] focus-visible:ring-[#075da8]/30"
-                  >
-                    {loading ? (
-                      "Signing in..."
-                    ) : (
-                      <>
-                        Sign in
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </>
-                    )}
-                  </Button>
-                </form>
-
-                <div className="mt-6 border-t border-slate-100 pt-5">
-                  <p className="text-center text-sm text-slate-500">
-                    New to Northstar?{" "}
-                    <Link
-                      href="/register"
-                      className="font-semibold text-[#075da8] underline-offset-4 hover:underline"
-                    >
-                      Create an account
-                    </Link>
-                  </p>
+                      {showPassword ? (
+                        <EyeOff className="h-5 w-5" />
+                      ) : (
+                        <Eye className="h-5 w-5" />
+                      )}
+                    </button>
+                  </div>
                 </div>
-              </CardContent>
-            </Card>
 
-            <div className="mt-6 flex items-center justify-center gap-2 text-xs text-slate-400">
-              <ShieldCheck className="h-3.5 w-3.5" />
-              Secure account authentication
+                {message && (
+                  <div
+                    role="alert"
+                    className="rounded-xl border border-red-200 bg-red-50 px-4 py-3"
+                  >
+                    <p className="text-sm leading-5 text-red-700">
+                      {message}
+                    </p>
+                  </div>
+                )}
+
+                <Button
+                  type="submit"
+                  disabled={loading}
+                  className="h-13 w-full rounded-xl bg-[#075da8] text-[15px] font-semibold text-white shadow-[0_8px_20px_-8px_rgba(7,93,168,0.8)] transition hover:bg-[#064f91] active:scale-[0.99] disabled:opacity-70"
+                >
+                  {loading ? (
+                    "Signing in..."
+                  ) : (
+                    <>
+                      Continue
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </>
+                  )}
+                </Button>
+              </form>
+
+              {/* Register */}
+              <div className="mt-7 border-t border-slate-100 pt-6">
+                <p className="text-center text-sm text-slate-500">
+                  Don't have an account?{" "}
+                  <Link
+                    href="/register"
+                    className="font-semibold text-[#075da8] hover:underline hover:underline-offset-4"
+                  >
+                    Create one
+                  </Link>
+                </p>
+              </div>
+            </div>
+
+            {/* Security footer */}
+            <div className="mt-5 flex items-center justify-center gap-2 px-4 text-center text-[11px] leading-5 text-slate-400">
+              <ShieldCheck className="h-3.5 w-3.5 shrink-0" />
+              <span>Your connection is protected with secure authentication.</span>
             </div>
           </div>
         </section>

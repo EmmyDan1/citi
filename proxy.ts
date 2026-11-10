@@ -51,16 +51,12 @@ export async function proxy(request: NextRequest) {
       pathname.startsWith(`${route}/`)
     );
 
-  const isAuthRoute =
-    pathname === "/login" || pathname === "/register";
 
   if (!user && isProtectedRoute) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  if (user && isAuthRoute) {
-    return NextResponse.redirect(new URL("/", request.url));
-  }
+
 
   return response;
 }

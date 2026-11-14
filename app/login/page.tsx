@@ -1,5 +1,5 @@
 "use client";
-import { CitibankLogo } from "@/components/brand/citibank-logo";
+import { CitibankLogo } from "../../components/brand/citibank-logo";
 import Link from "next/link";
 import { useState } from "react";
 import {

@@ -1,6 +1,5 @@
-
 "use client";
-
+import { CitibankLogo } from "@/components/brand/citibank-logo";
 import Link from "next/link";
 import { useState } from "react";
 import {
@@ -61,16 +60,14 @@ export default function LoginPage() {
           <div className="relative z-10 flex items-center justify-between">
             <Link
               href="/"
-              className="flex items-center gap-3"
-              aria-label="Northstar home"
+              className="flex items-center"
+              aria-label="Citibank home"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[#075da8] shadow-lg shadow-black/10">
-                <span className="text-lg font-bold">N</span>
-              </div>
-
-              <span className="text-xl font-semibold tracking-tight">
-                Northstar
-              </span>
+              <CitibankLogo
+                width={140}
+                height={46}
+                className="h-10 w-auto rounded-md"
+              />
             </Link>
 
             <div className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[11px] font-medium text-blue-50 backdrop-blur">
@@ -107,9 +104,7 @@ export default function LoginPage() {
 
           {/* Mobile heading */}
           <div className="relative z-10 mt-10 max-w-sm lg:hidden">
-            <p className="text-sm font-medium text-blue-100">
-              Welcome back
-            </p>
+            <p className="text-sm font-medium text-blue-100">Welcome back</p>
 
             <h1 className="mt-2 text-3xl font-semibold tracking-tight">
               Sign in to your account
@@ -180,9 +175,7 @@ export default function LoginPage() {
                       id="password"
                       type={showPassword ? "text" : "password"}
                       value={password}
-                      onChange={(event) =>
-                        setPassword(event.target.value)
-                      }
+                      onChange={(event) => setPassword(event.target.value)}
                       autoComplete="current-password"
                       required
                       className="h-13 rounded-xl border-slate-200 bg-slate-50/70 px-4 pr-12 text-[16px] shadow-none transition placeholder:text-slate-400 focus-visible:border-[#0876c9] focus-visible:bg-white focus-visible:ring-4 focus-visible:ring-[#0876c9]/10"
@@ -210,9 +203,7 @@ export default function LoginPage() {
                     role="alert"
                     className="rounded-xl border border-red-200 bg-red-50 px-4 py-3"
                   >
-                    <p className="text-sm leading-5 text-red-700">
-                      {message}
-                    </p>
+                    <p className="text-sm leading-5 text-red-700">{message}</p>
                   </div>
                 )}
 
@@ -249,7 +240,9 @@ export default function LoginPage() {
             {/* Security footer */}
             <div className="mt-5 flex items-center justify-center gap-2 px-4 text-center text-[11px] leading-5 text-slate-400">
               <ShieldCheck className="h-3.5 w-3.5 shrink-0" />
-              <span>Your connection is protected with secure authentication.</span>
+              <span>
+                Your connection is protected with secure authentication.
+              </span>
             </div>
           </div>
         </section>

@@ -143,7 +143,7 @@ export default function ProfilePage() {
                   </p>
 
                   <p className="mt-1 text-xs text-slate-400">
-                    Customer since 2026
+                    Customer since 1991
                   </p>
                 </div>
               </div>

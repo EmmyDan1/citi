@@ -53,14 +53,14 @@ function BottomNavItem({
   return (
     <Link
       href={href}
-      className={`flex min-w-16 flex-col items-center gap-1 rounded-lg px-3 py-2 text-[11px] ${
+      className={`flex min-w-16 flex-col items-center gap-1 rounded-xl px-3 py-2 text-[11px] transition-colors ${
         active
-          ? "text-white"
-          : "text-white/45 transition-colors hover:text-white/80"
+          ? "bg-white/10 text-white"
+          : "text-white/50 hover:bg-white/5 hover:text-white/85"
       }`}
     >
       <Icon className="h-5 w-5" />
-      <span>{label}</span>
+      <span className="font-medium">{label}</span>
     </Link>
   );
 }

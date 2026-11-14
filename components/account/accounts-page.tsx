@@ -1,4 +1,6 @@
+import Link from "next/link";
 import {
+  ArrowLeft,
   ChevronRight,
   CreditCard,
   Landmark,
@@ -59,58 +61,79 @@ export default async function AccountsPage() {
     ) ?? 0;
 
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-950">
-      <div className="mx-auto max-w-md px-4 pb-10">
-        <header className="py-6">
-          <p className="text-xs font-medium text-slate-500">
+    <main className="min-h-screen bg-northstar-background text-northstar-text">
+      <div className="mx-auto w-full max-w-3xl px-4 pb-10 sm:px-6 lg:px-8">
+        <header className="py-6 sm:py-8">
+          <Link
+            href="/"
+            className="mb-5 inline-flex items-center gap-2 text-sm font-medium text-northstar-text-muted transition-colors hover:text-northstar-blue"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to Dashboard
+          </Link>
+
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-northstar-text-muted">
             Banking
           </p>
 
-          <h1 className="mt-1 text-2xl font-semibold tracking-tight">
+          <h1 className="mt-1.5 text-2xl font-semibold tracking-tight text-northstar-text sm:text-3xl">
             Accounts
           </h1>
+
+          <p className="mt-1.5 text-sm text-northstar-text-muted">
+            View your balances and account details.
+          </p>
         </header>
 
-        <Card className="rounded-2xl border-0 bg-slate-950 text-white shadow-lg">
-          <CardContent className="p-5">
-            <p className="text-sm text-slate-400">
-              Total balance
-            </p>
-
-            <p className="mt-2 text-3xl font-semibold tracking-tight">
-              {formatCurrency(totalBalance)}
-            </p>
-
-            <div className="mt-6 flex items-center justify-between">
+        <Card className="overflow-hidden rounded-2xl border-0 bg-gradient-to-br from-northstar-deep-blue via-northstar-blue to-northstar-bright-blue text-white shadow-[0_18px_40px_-20px_rgba(3,43,85,0.55)]">
+          <CardContent className="p-5 sm:p-6">
+            <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="text-xs text-slate-400">
-                  Available to use
+                <p className="text-sm font-medium text-blue-100">
+                  Total balance
                 </p>
 
-                <p className="mt-1 text-sm font-medium text-slate-200">
-                  {formatCurrency(totalAvailable)}
+                <p className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
+                  {formatCurrency(totalBalance)}
                 </p>
               </div>
 
-              <div className="rounded-xl bg-white/10 p-2.5">
-                <Landmark className="h-5 w-5" />
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/10">
+                <Landmark className="h-5 w-5 text-white" />
               </div>
+            </div>
+
+            <div className="mt-7 border-t border-white/10 pt-4">
+              <p className="text-xs text-blue-100">
+                Available to use
+              </p>
+
+              <p className="mt-1 text-sm font-semibold text-white">
+                {formatCurrency(totalAvailable)}
+              </p>
             </div>
           </CardContent>
         </Card>
 
         <section className="mt-8">
-          <div className="mb-3 flex items-center justify-between">
-            <h2 className="text-base font-semibold">
-              All accounts
-            </h2>
+          <div className="mb-3 flex items-end justify-between gap-4">
+            <div>
+              <h2 className="text-base font-semibold text-northstar-text">
+                All accounts
+              </h2>
 
-            <span className="text-xs text-slate-500">
-              {accounts?.length ?? 0} accounts
+              <p className="mt-0.5 text-xs text-northstar-text-muted">
+                Your connected banking accounts
+              </p>
+            </div>
+
+            <span className="shrink-0 text-xs font-medium text-northstar-text-muted">
+              {accounts?.length ?? 0}{" "}
+              {accounts?.length === 1 ? "account" : "accounts"}
             </span>
           </div>
 
-          <Card className="rounded-2xl border-slate-200 bg-white shadow-sm">
+          <Card className="rounded-2xl border-northstar-border bg-white shadow-sm">
             <CardContent className="p-0">
               {accounts && accounts.length > 0 ? (
                 accounts.map((account, index) => {
@@ -118,21 +141,24 @@ export default async function AccountsPage() {
 
                   return (
                     <div key={account.id}>
-                      <button className="flex w-full items-center gap-3 px-4 py-5 text-left transition hover:bg-slate-50">
-                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-100">
-                          <Icon className="h-5 w-5 text-slate-700" />
+                      <button
+                        type="button"
+                        className="flex w-full items-center gap-3 px-4 py-5 text-left transition-colors hover:bg-northstar-surface-muted active:bg-northstar-soft-blue/60 sm:px-5"
+                      >
+                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-northstar-soft-blue">
+                          <Icon className="h-5 w-5 text-northstar-blue" />
                         </div>
 
                         <div className="min-w-0 flex-1">
-                          <p className="text-sm font-semibold">
+                          <p className="truncate text-sm font-semibold text-northstar-text">
                             {account.name}
                           </p>
 
-                          <p className="mt-1 text-xs text-slate-500">
+                          <p className="mt-1 text-xs text-northstar-text-muted">
                             {maskAccountNumber(account.account_number)}
                           </p>
 
-                          <p className="mt-2 text-xs text-slate-400">
+                          <p className="mt-2 text-xs text-northstar-text-subtle">
                             Available{" "}
                             {formatCurrency(
                               Number(account.available_balance)
@@ -140,28 +166,28 @@ export default async function AccountsPage() {
                           </p>
                         </div>
 
-                        <div className="text-right">
-                          <p className="text-sm font-semibold">
+                        <div className="shrink-0 text-right">
+                          <p className="text-sm font-semibold text-northstar-text">
                             {formatCurrency(Number(account.balance))}
                           </p>
 
-                          <ChevronRight className="ml-auto mt-2 h-4 w-4 text-slate-400" />
+                          <ChevronRight className="ml-auto mt-2 h-4 w-4 text-northstar-text-subtle" />
                         </div>
                       </button>
 
                       {index < accounts.length - 1 && (
-                        <div className="mx-4 border-t border-slate-100" />
+                        <div className="mx-4 border-t border-northstar-border sm:mx-5" />
                       )}
                     </div>
                   );
                 })
               ) : (
                 <div className="px-5 py-10 text-center">
-                  <p className="text-sm font-medium">
+                  <p className="text-sm font-semibold text-northstar-text">
                     No accounts found
                   </p>
 
-                  <p className="mt-1 text-xs text-slate-500">
+                  <p className="mt-1 text-xs text-northstar-text-muted">
                     Your accounts will appear here.
                   </p>
                 </div>

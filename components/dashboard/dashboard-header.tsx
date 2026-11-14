@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Bell, Landmark, Menu, Search } from "lucide-react";
+import { Bell, Menu, Search } from "lucide-react";
+import { CitibankLogo } from "../../components/brand/citibank-logo";
 
 export default function DashboardHeader({
   firstName,
@@ -19,22 +20,24 @@ export default function DashboardHeader({
 
         <Link
           href="/"
-          className="flex items-center gap-2 text-white"
+          className="flex items-center"
+          aria-label="Citibank home"
         >
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/20 bg-white/10">
-            <Landmark className="h-4 w-4" />
-          </div>
-
-          <span className="text-base font-semibold tracking-tight">
-            Northstar
-          </span>
+          <CitibankLogo
+            width={110}
+            height={36}
+            className="h-8 w-auto"
+          />
         </Link>
       </div>
 
-      <div className="hidden items-center gap-1 lg:flex">
+      <nav
+        className="hidden items-center gap-1 lg:flex"
+        aria-label="Primary navigation"
+      >
         <Link
           href="/"
-          className="rounded-lg bg-white/10 px-4 py-2 text-sm font-medium text-white"
+          className="rounded-lg bg-white/12 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-white/15"
         >
           Banking
         </Link>
@@ -59,7 +62,7 @@ export default function DashboardHeader({
         >
           Transactions
         </Link>
-      </div>
+      </nav>
 
       <div className="flex items-center gap-1">
         <button
@@ -80,7 +83,8 @@ export default function DashboardHeader({
 
         <Link
           href="/profile"
-          className="ml-1 flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-xs font-semibold text-white"
+          className="ml-1 flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-xs font-semibold text-white transition-colors hover:bg-white/15"
+          aria-label="Open profile"
         >
           {firstName.slice(0, 1).toUpperCase()}
         </Link>
